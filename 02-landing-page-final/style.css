@@ -1,0 +1,329 @@
+/*------------------------------------*\
+  #SETTINGS
+\*------------------------------------*/
+:root {
+  --font-primary: "Inter", sans-serif;
+
+  --font-bold: 700;
+  --font-regular: 400;
+
+  --font-3xl: 4rem;
+  --font-2xl: 2.5rem;
+  --font-xl: 2.25rem;
+  --font-lg: 1.5rem;
+  --font-md: 1.25rem;
+
+  --background-primary: hsl(240, 100%, 0%);
+  --background-secondary: hsl(0, 0%, 100%, 0.05);
+  --text-primary: hsl(0, 0%, 100%);
+  --text-secondary: hsl(240, 1%, 58%);
+  --color-primary: hsl(20, 85%, 48%);
+  --color-secondary: hsl(245, 70%, 57%);
+  --border-color: hsl(0, 0%, 100%, 0.15);
+  --gradient-color: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+}
+
+/*------------------------------------*\
+  #GENERIC
+\*------------------------------------*/
+/**
+ * A modern CSS Reset by Andy Bell
+ * @link https://piccalil.li/blog/a-more-modern-css-reset/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/*------------------------------------*\
+  #BASE
+\*------------------------------------*/
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-md);
+  background-color: var(--background-primary);
+  color: var(--text-secondary);
+  overflow-x: hidden;
+}
+
+/*------------------------------------*\
+  #UTILS
+\*------------------------------------*/
+.container {
+  max-width: 100rem;
+  width: 100%;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  margin-inline: auto;
+}
+
+/**
+ * Improved visually hidden by ffoodd
+ * @link https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+ */
+.visually-hidden,
+.visually-hidden-focusable:not(:focus, :focus-within) {
+  border: 0 !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+.visually-hidden:not(caption),
+.visually-hidden-focusable:not(caption):not(:focus, :focus-within) {
+  position: absolute !important;
+}
+
+.visually-hidden *,
+.visually-hidden-focusable:not(:focus, :focus-within) * {
+  overflow: hidden !important;
+}
+
+.text-gradient {
+  background: var(--gradient-color);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+.button {
+  --_border-width: 2px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  font-weight: var(--font-bold);
+  cursor: pointer;
+  text-decoration: none;
+
+  position: relative;
+  background-clip: padding-box;
+  border: var(--_border-width) solid transparent;
+  border-radius: 0.35em;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--_border-width) * -1);
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--gradient-color);
+  }
+}
+
+/* .button:is(:hover, :focus-visible)::before {
+  
+} */
+
+.background-gradient {
+  position: absolute;
+  z-index: -50;
+  opacity: 20%;
+
+  &[data-gradient="1"] {
+    top: -60%;
+    left: -40%;
+  }
+
+  &[data-gradient="2"] {
+    top: 0%;
+    left: 40%;
+  }
+}
+
+/*------------------------------------*\
+  #HEADER
+\*------------------------------------*/
+.header {
+  background-color: var(--background-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  margin-block: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  & > a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: var(--font-lg);
+    font-weight: var(--font-bold);
+  }
+}
+
+.primary-nav ul {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.primary-nav__link {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: var(--font-bold);
+
+  &:is(:hover, :focus-visible) {
+    color: var(--text-secondary);
+  }
+}
+
+.hero {
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+  padding-block: 5rem;
+}
+
+.main-title {
+  font-size: var(--font-3xl);
+  color: var(--text-primary);
+  margin-inline: auto;
+
+  & > img {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  & > .visually-hidden {
+    width: 0;
+  }
+}
+
+.main-subtitle {
+  font-size: var(--font-lg);
+  max-width: 50ch;
+  margin-inline: auto;
+}
+
+.hero__cta {
+  font-size: var(--font-2xl);
+  margin-inline: auto;
+  text-decoration: none;
+  font-weight: var(--font-bold);
+  width: fit-content;
+}
+
+.features {
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  gap: 2rem;
+}
+
+.feature {
+  display: grid;
+  gap: 1.5rem;
+  background-color: var(--background-secondary);
+  border: 2px solid var(--border-color);
+  padding: 3rem;
+  border-radius: 1rem;
+}
+
+.feature:nth-child(even) {
+  margin-top: 3rem;
+}
+
+.feature__icon {
+  height: 5rem;
+}
+
+.feature__title {
+  margin: 0;
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
